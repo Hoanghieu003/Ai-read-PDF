@@ -1,0 +1,59 @@
+"External Claddings"
+Find roof cladding, wall cladding, external cladding, NZ/AU Standard
+
+"Internal Claddings"
+Find internal claddings, internal linings, bathroom linings, kitchen linings, garage linings/claddings, NZ/AU Standard
+
+"Roof Details, Skylights and Strucure"
+Find roof angle/°, roof type, structural roof items, wind zone or wind load, skylight, light tube, solar panel, solar water roof, NZ/AU Standard
+
+"Eaves/Soffit"
+Find soffit detail, soffit lining, soffit type, fascia type, eave, eave lenth, eave type, overhang, soffit/eave timber, NZ/AU Standard
+
+"Wall studs and structural timbers"
+Find wall stud mentions formatted like 90x45 , 100x50 numbers vary, timber grade, timber treatment, stud spacing, stud length, nogging, nog spacing, nog centers, nog height,steel stud NZ/AU Standard
+
+"Decking and External Timbers"
+find decking, decking member, decking beam, decking post, decking material, decking treatment, decking fixing, NZ/AU Standard
+ 
+"Slab and Concrete"
+find concrete type, slab thickness, slab type, concrete type, concrete reinforcing, timber flooring, timber piles, floor beam, NZ/AU Standard
+
+"Garage"
+find garage door, garage motor, garage lining, shed door, shed lining, NZ/AU Standard
+
+"Steel Beams & Posts"
+Find steel beams, steel post, steel pfc, UB, steel portal, NZ/AU Standard 
+
+"Insulation"
+find house insulation, insulation rating, garage insulation, roof insulation, wall insulation, NZ/AU Standard
+
+"Roof Nails and Fixings"
+Find roof fixings and nails, NZ/AU Standard
+
+"Floor Nails and Fixings"
+Find floor fixings and nails, NZ/AU Standard
+
+"Frame Nails and Fixings"
+Find frame fixings and nails, NZ/AU Standard
+
+"Bathroom Materials and Details"
+Find all bathroom details and products including plumbing, NZ/AU Standard
+
+"Kitchen"
+Find all kitchen related materials and products, NZ/AU Standard
+
+"Plumbing"
+Find all plumbing details, pipes and water related, NZ/AU Standard
+
+"Gutter and Drainage"
+Find gutter type, gutter board, gutter fixing, gutter plumbing and downpipe, drains, water trap, drain trap, NZ/AU Standard
+
+"Lighting, Electrical & Fixings"
+Find all lighting type, product, switch, wire, lamp, fan, exhaust, power, switchboard, rangehood ducting, NZ/AU Standard
+
+"Air Conditioning, Heating & Fireplace"
+Find air conditioning, cooling ,heating, fireplace, gas heater, gas fire place, NZ/AU Standard
+
+
+
