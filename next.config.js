@@ -2,7 +2,7 @@
 const nextConfig = {
   env: {
     api_key: process.env.api_key,
-    REPLACE_HOSTNAME: process.env.REPLACE_HOSTNAME
+    REPLACE_HOSTNAME: process.env.REPLACE_HOSTNAME,
   },
   experimental: {
     serverActions: true,

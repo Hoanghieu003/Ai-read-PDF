@@ -4,7 +4,10 @@ import { Upload } from "@/app/assets/img/Upload";
 import Edit from "@/app/assets/img/Edit";
 import Trash from "@/app/assets/img/Trash";
 import { clerkClient } from "@clerk/nextjs";
-
+import { User } from "../../../Model";
+import EditUserModal from "./Modal/EditUserModal";
+import DeleteUserModal from "./Modal/DeleteUserModal";
+import CreateUserModal from "./Modal/CreateUserModal";
 interface UserComponentProps {
   showDataComponent: boolean;
   setShowDataComponent: (showDataComponent: boolean) => void;
@@ -25,7 +28,6 @@ const UserComponent: React.FC<UserComponentProps> = ({
       const response = await fetch("/api/user", { method: "GET" });
       const user = await response.json();
       setUser(user);
-      console.log("setUser", user);
     } catch (error) {
       console.error(error);
     }
@@ -126,17 +128,36 @@ const UserComponent: React.FC<UserComponentProps> = ({
           </table>
         </div>
       </div>
+      {editModal && (
+        <EditUserModal
+          state={editModal}
+          close={() => {
+            setEditModal(false);
+          }}
+          index={modalIndex}
+          user={user}
+        />
+      )}
+      {deleteModal && (
+        <DeleteUserModal
+          state={deleteModal}
+          close={() => {
+            setDeleteModal(false);
+          }}
+          index={modalIndex}
+          user={user}
+        />
+      )}
+      {createModal && (
+        <CreateUserModal
+          state={createModal}
+          fetchDataUser={fetchDataUser}
+          close={() => {
+            setCreateModal(false);
+          }}
+        />
+      )}
     </div>
   );
 };
 export default UserComponent;
-interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  emailAddresses: EmailAddress[];
-}
-
-interface EmailAddress {
-  emailAddress: string;
-}
