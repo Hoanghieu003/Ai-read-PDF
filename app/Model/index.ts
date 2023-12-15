@@ -5,6 +5,7 @@ export interface User {
   emailAddresses: EmailAddress[];
   phoneNumbers: PhoneNumber[];
   username: string;
+  requestCount: number;
 }
 
 

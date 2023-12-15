@@ -59,7 +59,12 @@ const Chat = ({ sourceId, className, fileName }: Props) => {
   const ref = useRef<HTMLDivElement | null>(null);
 
   const [chatHistory, setChatHistory] = useState<any[]>([]);
-
+  const saveRequestCount = async () => {
+    await fetch("/api/request", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+  };
   const handleSuggestion = (prompt: string) => {
     if (prompt.trim() === "") return;
     const userInput: Message = { role: "user", content: prompt };
@@ -99,6 +104,7 @@ const Chat = ({ sourceId, className, fileName }: Props) => {
             temperature: 0,
             stream: true,
           });
+          await saveRequestCount();
           setThinking(false);
           updatedChatHistory.push({ role: "assistant", content: "" });
           for await (const part of response) {
@@ -122,7 +128,7 @@ const Chat = ({ sourceId, className, fileName }: Props) => {
           }
         })
         .catch((error) => {
-          toast.error(error.message)
+          toast.error(error.message);
         });
       try {
         setTimeout(() => {
@@ -150,7 +156,7 @@ const Chat = ({ sourceId, className, fileName }: Props) => {
               return (
                 <button
                   key={index}
-                  className="px-2 py-1 text-white border-[1px] rounded-md duration-200 ease-in-out hover:scale-105 bg-slate-50/5 gap-y-4  hover:shadow-md hover:shadow-slate-200/20 min-w-[250px]"
+                  className="px-2 py-1 text-white border-[1px] rounded-md duration-200 ease-in-out hover:scale-105 bg-slate-50/5 gap-y-4 hover:shadow-md hover:shadow-slate-200/20 min-w-[250px]"
                   onClick={() => handleSuggestion(item.prompt)}
                 >
                   {item.name}

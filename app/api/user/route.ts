@@ -34,7 +34,7 @@ export async function PUT(req: NextRequest) {
   }
 }
 export async function DELETE(request: NextRequest) {
-    const { id } = await request.json() as { id: string };
+  const { id } = await request.json() as { id: string };
   try {
     await clerkClient.users.deleteUser(id);
     return NextResponse.json({ message: 'Success' });

@@ -22,12 +22,68 @@ const UserComponent: React.FC<UserComponentProps> = ({
   const [createModal, setCreateModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [modalIndex, setModalIndex] = useState(99999999999);
+  const [requestCount, setRequestCount] = useState([]);
 
+  // const fetchDataUser = async () => {
+  //   try {
+  //     const response = await fetch("/api/user", { method: "GET" });
+  //     const user = await response.json();
+  //     setUser(user);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+  // const fetchDataUser = async () => {
+  //   try {
+  //     const response = await fetch("/api/user", { method: "GET" });
+  //     const user = await response.json();
+  //     await fetchUserRequestCount();
+  //     setUser({ ...user });
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+  // const fetchUserRequestCount = async () => {
+  //   try {
+  //     const response = await fetch("/api/request", { method: "GET" });
+  //     const data = await response.json();
+  //     setRequestCount(data);
+  //     console.log("userRequestCount", data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+  // const fetchUserRequestCount = async () => {
+  //   try {
+  //     const response = await fetch("/api/request", { method: "GET" });
+  //     const data = await response.json();
+  //     setUser((prevUser) => ({ ...prevUser, requestCount: data.requestCount }));
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
   const fetchDataUser = async () => {
     try {
-      const response = await fetch("/api/user", { method: "GET" });
-      const user = await response.json();
-      setUser(user);
+      const [userResponse, requestCountResponse] = await Promise.all([
+        fetch("/api/user", { method: "GET" }),
+        fetch("/api/request", { method: "GET" }),
+      ]);
+
+      const users = await userResponse.json();
+      const data = await requestCountResponse.json();
+
+      const updatedUsers = users.reduce((acc: any, user: any) => {
+        const requestCount = data.find(
+          (d: any) => d.userId === user.id
+        )?.requestCount;
+        if (requestCount) {
+          acc.push({ ...user, requestCount });
+        } else {
+          acc.push(user);
+        }
+        return acc;
+      }, []);
+      setUser(updatedUsers);
     } catch (error) {
       console.error(error);
     }
@@ -70,6 +126,9 @@ const UserComponent: React.FC<UserComponentProps> = ({
                 <th scope="col" className="px-6 py-3">
                   Email
                 </th>
+                <th scope="col" className="px-6 py-3">
+                  Request API Count
+                </th>
                 <th scope="col" className="py-3">
                   Action
                 </th>
@@ -101,6 +160,9 @@ const UserComponent: React.FC<UserComponentProps> = ({
                       </td>
                       <td className="px-6 py-4 text-white">
                         <p>{item.emailAddresses[0].emailAddress}</p>
+                      </td>
+                      <td className="px-6 py-4 text-white">
+                        <p>{item.requestCount}</p>
                       </td>
                       <td>
                         <button
