@@ -71,18 +71,39 @@ const UserComponent: React.FC<UserComponentProps> = ({
 
       const users = await userResponse.json();
       const data = await requestCountResponse.json();
+      // const updatedUsers: User[] = [];
 
+      // const updatedUsers = users.reduce((acc: any, user: any) => {
+      //   const requestCount = data.find(
+      //     (d: any) => d.userId === user.id
+      //   )?.requestCount;
+      //   if (requestCount) {
+      //     acc.push({ ...user, requestCount });
+      //   } else {
+      //     acc.push(user);
+      //   }
+      //   return acc;
+      // }, []);
       const updatedUsers = users.reduce((acc: any, user: any) => {
-        const requestCount = data.find(
-          (d: any) => d.userId === user.id
-        )?.requestCount;
-        if (requestCount) {
-          acc.push({ ...user, requestCount });
+        const requestCountData = data.find((d: any) => d.userId === user.id);
+        const updatedUser: User = { ...user };
+        if (requestCountData) {
+          updatedUser.requestCount = requestCountData.requestCount;
         } else {
-          acc.push(user);
+          updatedUser.requestCount = 0;
         }
+        if (requestCountData) {
+          updatedUser.uploadCount = requestCountData.uploadCount;
+          updatedUser.uploadTotalMB = requestCountData.uploadTotalMB;
+        } else {
+          updatedUser.uploadCount = 0;
+          updatedUser.uploadTotalMB = 0;
+        }
+
+        acc.push(updatedUser);
         return acc;
       }, []);
+
       setUser(updatedUsers);
     } catch (error) {
       console.error(error);
@@ -129,6 +150,12 @@ const UserComponent: React.FC<UserComponentProps> = ({
                 <th scope="col" className="px-6 py-3">
                   Request API Count
                 </th>
+                <th scope="col" className="px-6 py-3">
+                  Upload API Count
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Total Upload MB
+                </th>
                 <th scope="col" className="py-3">
                   Action
                 </th>
@@ -163,6 +190,12 @@ const UserComponent: React.FC<UserComponentProps> = ({
                       </td>
                       <td className="px-6 py-4 text-white">
                         <p>{item.requestCount}</p>
+                      </td>
+                      <td className="px-6 py-4 text-white">
+                        <p>{item.uploadCount}</p>
+                      </td>
+                      <td className="px-6 py-4 text-white">
+                        <p>{item.uploadTotalMB.toFixed(3)} MB</p>
                       </td>
                       <td>
                         <button

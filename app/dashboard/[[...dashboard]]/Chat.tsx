@@ -61,7 +61,7 @@ const Chat = ({ sourceId, className, fileName }: Props) => {
   const [chatHistory, setChatHistory] = useState<any[]>([]);
   const saveRequestCount = async () => {
     await fetch("/api/request", {
-      method: "POST",
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
     });
   };

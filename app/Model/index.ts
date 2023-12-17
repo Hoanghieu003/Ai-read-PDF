@@ -6,6 +6,8 @@ export interface User {
   phoneNumbers: PhoneNumber[];
   username: string;
   requestCount: number;
+  uploadCount: number;
+  uploadTotalMB: number;
 }
 
 
