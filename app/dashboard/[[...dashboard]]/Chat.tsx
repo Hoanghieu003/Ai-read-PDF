@@ -150,13 +150,14 @@ const Chat = ({ sourceId, className, fileName }: Props) => {
   return (
     <div className={className}>
       <div className="border-gray-200 px-4 mb-1 sm:mb-0 hide overflow-auto w-1/3">
-        <div className="flex flex-col gap-2 items-center overflow-auto mb-2 scrollbar-white scrollbar-thin py-5">
+        {/* <div className="flex flex-col gap-2 "> */}
+        <div className="flex flex-col w-full flex-direction-column gap-2 mb-2 scrollbar-white scrollbar-thin py-5">
           {buttonArray.length > 0 &&
             buttonArray.map((item: { name: string; prompt: string }, index) => {
               return (
                 <button
                   key={index}
-                  className="px-2 py-1 text-white border-[1px] rounded-md duration-200 ease-in-out hover:scale-105 bg-slate-50/5 gap-y-4 hover:shadow-md hover:shadow-slate-200/20 min-w-[250px]"
+                  className="px-3 py-1 text-white border-[1px] rounded-md duration-200 ease-in-out hover:scale-105 bg-slate-50/5 gap-y-4 hover:shadow-md hover:shadow-slate-200/20 flex-grow flex-basis-[max-content]"
                   onClick={() => handleSuggestion(item.prompt)}
                 >
                   {item.name}
@@ -178,7 +179,16 @@ const Chat = ({ sourceId, className, fileName }: Props) => {
             </div>
             <div className="flex flex-col leading-tight">
               <div className="text-2xl mt-1 flex items-center">
-                <span className="text-gray-300 mr-3">{fileName}</span>
+                <span
+                  className="text-gray-300 mr-3"
+                  style={{
+                    fontFamily: "'Google Sans', 'Helvetica Neue', sans-serif",
+                    fontSize: 32,
+                    fontWeight: 600,
+                  }}
+                >
+                  {fileName}
+                </span>
               </div>
             </div>
           </div>

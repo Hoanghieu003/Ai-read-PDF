@@ -84,6 +84,7 @@ const EditModal = ({ className, state, close, index }: Props) => {
                 setText(e.target.value);
               }}
               className="w-full resize-y bg-zinc-800 text-white rounded-lg col-auto py-2 px-3 h-40"
+              placeholder="textarea"
             />
 
             <button

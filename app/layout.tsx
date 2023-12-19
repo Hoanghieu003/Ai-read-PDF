@@ -3,6 +3,7 @@ import {
   clerkClient,
   SignedIn,
   UserButton,
+  ClerkLoading,
 } from "@clerk/nextjs";
 import "./globals.css";
 import { Inter } from "next/font/google";
@@ -10,7 +11,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
-
+import {} from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,17 +26,26 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head />
       <body
-        className={`${inter.className} min-h-screen flex flex-col bg-[#212020] `}
+        className={`${inter.className} min-h-screen flex flex-col bg-[#222327] `}
       >
         <ClerkProvider
           appearance={{
             variables: { colorPrimary: "#006198" },
           }}
         >
-          <div className="flex items-center justify-between h-20 gap-4 px-4 border-b border-black border-solid sm:px-8 border-opacity-20 text-2xl text-white font-semibold uppercase">
-            <Link href="/" className="flex items-center h-20 gap-2 sm:gap-4">
-              Construct AI
+          <div className="header flex items-center justify-between h-16 gap-4 px-4 border-b border-black border-solid sm:px-8 border-opacity-20 text-2xl text-white font-semibold">
+            <Link
+              href="/"
+              className="flex items-center h-20 gap-2 sm:gap-4 ai-icon"
+              style={{
+                fontFamily: "'Google Sans', 'Helvetica Neue', sans-serif",
+                fontSize: 20,
+                fontWeight: 600,
+              }}
+            >
+              {"Construct AI"}
             </Link>
             <SignedIn>
               <UserButton afterSignOutUrl="/" />
@@ -53,12 +63,10 @@ export default function RootLayout({
               }}
             />
           </div>
-
           <main className="grow">{children}</main>
-
-          <footer className="flex items-center h-20 gap-1 px-8 font-medium border-t md:px-20">
-            <div className="text-lg text-white font-semibold uppercase">
-              construct ai
+          <footer className=" footer flex items-center h-20 gap-1 px-8 font-medium md:px-20">
+            <div className="text-lg text-white font-semibold">
+              {"Construct AI"}
               <span className="text-sm text-white"> © 2023</span>
             </div>
           </footer>

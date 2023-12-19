@@ -63,13 +63,13 @@ const UploadPdf = () => {
     );
   };
   return (
-    <div className="px-8 md:px-20 w-full">
+    <div className="px-8 w-full">
       {/* Always display the Chat component and Table component */}
-      <div className="flex gap-10 py-3">
+      <div className="flex gap-10 pt-3">
         <ResultContextProvider>
           <Chat
             sourceId={sourceId}
-            className="px-10 sm:p-6 justify-between flex h-[calc(100vh-12rem)] w-2/3 overflow-auto"
+            className="px-10 sm:p-6 justify-between flex h-[calc(100vh-17rem)] w-2/3 overflow-auto"
             fileName={fileName}
           />
           <Table className="w-1/3 h-full overflow-auto" />
@@ -77,13 +77,10 @@ const UploadPdf = () => {
       </div>
 
       {/* Always display the Upload Files section */}
-      <div className="pt-10">
-        <label className="text-center block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-          Upload Files
-        </label>
+      <div className="pt-0">
         <div className="flex justify-center">
           <button
-            className="border border-neutral-200 p-16 rounded-2xl border-dashed"
+            className="border border-neutral-200 p-8 rounded-2xl border-dashed"
             onClick={() => fileInput.current?.click()}
             disabled={uploading}
           >
@@ -118,6 +115,7 @@ const UploadPdf = () => {
         type="file"
         className="hidden"
         onChange={handlePdfUpload}
+        placeholder="Upload File"
       />
     </div>
   );

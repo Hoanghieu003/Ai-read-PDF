@@ -1,5 +1,4 @@
 "use client";
-
 import { useOrganization, useSession, useUser } from "@clerk/nextjs";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
@@ -274,7 +273,7 @@ function Toggle(props: {
   checked: boolean;
   onChange: () => void;
   disabled: boolean;
- }) {
+}) {
   return (
     <div className="flex items-center justify-end flex-1">
       <button
